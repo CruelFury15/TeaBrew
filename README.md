@@ -1,112 +1,119 @@
-# TeaBrew - Social Media Platform
+# TeaBrew
 
-A modern social media platform built with React, featuring real-time interactions, content sharing, and community engagement.
+TeaBrew is a modern React social media platform prototype with a dark, neon-inspired UI, animated route transitions, and interactive feed components.
 
-## Features
+## What’s Included
 
-- 🎨 Dark theme with violet/purple/black color palette
-- 🔐 Production-grade authentication with Supabase
-- 📱 Responsive design with smooth animations
-- 🎯 Redux Toolkit for state management
-- ✅ Form validation with React Hook Form + Zod
-- 🔄 React Router for seamless navigation
-- ♿ Semantic HTML with ARIA attributes
+- 🎨 Dark/violet theme with glassmorphism-inspired UI
+- ⚡ Page transitions driven by Framer Motion
+- 🧠 Global state management with Redux Toolkit
+- 📍 Client-side routing via React Router
+- 🧪 Login experience with password + OTP options
+- 💬 Feed cards with reactions, chatroom preview, and heat metrics
+- 🧾 Category filters and interactive post actions
+- 🔧 Settings, profile, alerts, games, and discover pages
 
 ## Tech Stack
 
 - React 19
 - Vite 7
 - Redux Toolkit
-- React Router
-- Supabase Auth
+- React Router DOM
 - React Hook Form + Zod
-- Tailwind CSS
 - Framer Motion
+- Sonner toast notifications
 - Lucide Icons
+- Tailwind CSS + custom styles
+
+## Pages / Routes
+
+- `/home` — Main feed with posts and filters
+- `/discover` — Discover page for tea-room style content
+- `/spill` — Spill feed
+- `/hype` — Hype / trending content
+- `/alerts` — Notifications view
+- `/profile` — Signed-in user profile
+- `/user/:username` — Public user profile view
+- `/games` — Games content page
+- `/settings` — App settings
+- `/tea-spread/:postId` — Post detail / tea spread view
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- Supabase account
+- Node.js 18+
+- npm
 
-### Installation
+### Install
 
-1. Clone the repository
 ```bash
-git clone <your-repo-url>
-cd tea-brew
-```
-
-2. Install dependencies
-```bash
+git clone https://github.com/CruelFury15/TeaBrew.git
+cd TeaBrew
 npm install
 ```
 
-3. Configure Supabase
-- Create a project at [https://app.supabase.com](https://app.supabase.com)
-- Copy your project URL and anon key
-- Update `.env` file:
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+### Run Locally
 
-4. Configure OAuth providers (optional)
-- Enable Google and Apple OAuth in Supabase dashboard
-- See `SUPABASE_SETUP.md` for detailed instructions
-
-5. Start development server
 ```bash
 npm run dev
 ```
 
+Open the local development URL shown by Vite.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
 ## Authentication
 
-The app uses Supabase Auth with multiple sign-in methods:
-- Email + Password (with strong password validation)
-- Email + OTP (magic link)
-- Google OAuth
-- Apple OAuth
+Authentication is currently handled locally in the app using Redux actions in `src/store/slices/authSlice.js`.
 
-All forms include:
-- Real-time validation with Zod schemas
-- Disabled state during submission
-- Loading spinners
-- Read-only fields during submission
-- Semantic HTML with proper labels
-- ARIA attributes for accessibility
+The login flow supports:
+- Email + password
+- OTP login field with an OTP generator
+- OAuth button placeholders for Google / Apple
 
-See `SUPABASE_SETUP.md` for complete authentication setup guide.
+> Note: `src/lib/supabase.js` is currently stubbed and does not connect to a real Supabase backend.
 
 ## Project Structure
 
-```
+```text
 src/
-├── components/       # Reusable UI components
-├── pages/           # Page components
-├── store/           # Redux store and slices
-├── lib/             # Third-party configurations
-├── schemas/         # Zod validation schemas
-├── providers/       # Context providers
-└── utils/           # Utility functions
+├── assets/            # Images and static media
+├── components/        # Reusable UI components
+│   ├── alerts/
+│   ├── auth/
+│   ├── hype/
+│   ├── leaderboard/
+│   ├── tea/
+│   └── ui/
+├── lib/               # External integrations / config
+├── pages/             # Route page components
+├── providers/         # Context / provider wrappers
+├── schemas/           # Zod validation schemas
+├── store/             # Redux store and slices
+└── utils/             # Utility helpers
 ```
 
 ## Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+- `npm run dev` — Start Vite development server
+- `npm run build` — Build production assets
+- `npm run preview` — Preview the production build
+- `npm run lint` — Run ESLint checks
 
-## Documentation
+## Notes
 
-- `ARCHITECTURE.md` - Application architecture overview
-- `COMPONENT_GUIDE.md` - Component usage guide
-- `SUPABASE_SETUP.md` - Authentication setup guide
-- `MIGRATION_GUIDE.md` - Migration notes
-- `REFACTORING.md` - Refactoring decisions
+- The app is designed as a frontend prototype and uses mock state flows for authentication and posts.
+- If you want to add backend support, restore the Supabase integration in `src/lib/supabase.js` and wire it into the auth flow.
 
 ## License
 
